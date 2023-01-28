@@ -22,7 +22,6 @@ public class PaymentServiceImpl implements PaymentService {
         Reservation reservation = reservationRepository2.findById(reservationId).get();
         Spot spot = reservation.getSpot();
         Payment payment =reservation.getPayment();
-        PaymentMode paymentMode;
         mode = mode.toUpperCase();
 
         if(spot.getPricePerHour()*reservation.getNumberOfHours() > amountSent){
