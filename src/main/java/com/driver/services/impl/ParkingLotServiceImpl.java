@@ -97,7 +97,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public void deleteParkingLot(int parkingLotId) {
-        List<Spot> spotList = parkingLotRepository1.findById(parkingLotId).get().getSpotList();
+       // List<Spot> spotList = parkingLotRepository1.findById(parkingLotId).get().getSpotList();
         parkingLotRepository1.deleteById(parkingLotId);
 
     }
