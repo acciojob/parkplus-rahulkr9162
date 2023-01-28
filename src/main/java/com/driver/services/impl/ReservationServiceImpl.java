@@ -27,8 +27,8 @@ public class ReservationServiceImpl implements ReservationService {
         User user = userRepository3.findById(userId).get();
         List<Spot> spotList = parkingLot.getSpotList();
         int price = Integer.MAX_VALUE;
-        SpotType spotType;
-        Spot spotBooked = new Spot();
+        SpotType spotType = null;
+        Spot spotBooked = null;
         boolean flag = false;
 
         if(numberOfWheels >0 && numberOfWheels <=2){
@@ -37,7 +37,7 @@ public class ReservationServiceImpl implements ReservationService {
         else if(numberOfWheels >2 && numberOfWheels <=4){
             spotType = SpotType.FOUR_WHEELER;
         }
-        else{
+        else if(numberOfWheels > 4){
             spotType = SpotType.OTHERS;
         }
 
@@ -56,11 +56,13 @@ public class ReservationServiceImpl implements ReservationService {
             reservation.setNumberOfHours(timeInHours);
             reservation.setSpot(spotBooked);
             reservation.setUser(user);
-            reservationRepository3.save(reservation);
+           // reservationRepository3.save(reservation);
 
             spotBooked.setOccupied(true);
-            spotBooked.setPricePerHour(timeInHours*spotBooked.getPricePerHour());
-
+            List<Reservation> reservationList = spotBooked.getReservationList();
+            reservationList.add(reservation);
+            spotBooked.setReservationList(reservationList);
+            spotRepository3.save(spotBooked);
         }
         else throw  new Exception("Cannot make reservation");
 
