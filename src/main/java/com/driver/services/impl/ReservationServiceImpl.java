@@ -25,6 +25,9 @@ public class ReservationServiceImpl implements ReservationService {
     public Reservation reserveSpot(Integer userId, Integer parkingLotId, Integer timeInHours, Integer numberOfWheels) throws Exception {
         ParkingLot parkingLot = parkingLotRepository3.findById(parkingLotId).get();
         User user = userRepository3.findById(userId).get();
+        if(parkingLot== null || user == null){
+            throw new Exception("Cannot make reservation");
+        }
         List<Spot> spotList = parkingLot.getSpotList();
         int price = Integer.MAX_VALUE;
         SpotType spotType = null;
@@ -64,7 +67,7 @@ public class ReservationServiceImpl implements ReservationService {
             spotBooked.setReservationList(reservationList);
             spotRepository3.save(spotBooked);
         }
-        else throw  new Exception("Cannot make reservation");
+
 
         return  reservation;
     }
