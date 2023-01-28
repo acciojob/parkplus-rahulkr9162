@@ -56,22 +56,23 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public void deleteSpot(int spotId) {
-        if (spotRepository1.findById(spotId).get() != null) {
-            Spot spot = spotRepository1.findById(spotId).get();
-            ParkingLot parkingLot = spot.getParkingLot();
-            List<Spot> spotList = parkingLot.getSpotList();
-            for (Spot spot1 : spotList) {
-                if (spot1.getId() == spot.getId()) {
-                    spotList.remove(spot1);
-                    break;
-                }
-            }
-            parkingLot.setSpotList(spotList);
-
-            spotRepository1.deleteById(spotId);
-
-            parkingLotRepository1.save(parkingLot);
-        }
+//        if (spotRepository1.findById(spotId).get() != null) {
+//            Spot spot = spotRepository1.findById(spotId).get();
+//            ParkingLot parkingLot = spot.getParkingLot();
+//            List<Spot> spotList = parkingLot.getSpotList();
+//            for (Spot spot1 : spotList) {
+//                if (spot1.getId() == spot.getId()) {
+//                    spotList.remove(spot1);
+//                    break;
+//                }
+//            }
+//            parkingLot.setSpotList(spotList);
+//
+//            spotRepository1.deleteById(spotId);
+//
+//            parkingLotRepository1.save(parkingLot);
+//        }
+        spotRepository1.deleteById(spotId);
     }
 
 
