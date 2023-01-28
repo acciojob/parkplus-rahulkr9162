@@ -25,6 +25,14 @@ public class PaymentServiceImpl implements PaymentService {
         PaymentMode paymentMode;
         mode = mode.toUpperCase();
 
+        if(spot.getPricePerHour()*reservation.getNumberOfHours() <= amountSent){
+            payment.setPaymentCompleted(true);
+        }
+        else{
+            throw new Exception("Insufficient Amount");
+        }
+
+
         if(mode == "CASH"){
             paymentMode = PaymentMode.CASH;
         }
@@ -38,12 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
             throw new Exception("Payment mode not detected");
         }
 
-        if(spot.getPricePerHour()*reservation.getNumberOfHours() <= amountSent){
-            payment.setPaymentCompleted(true);
-        }
-        else{
-            throw new Exception("Insufficient Amount");
-        }
+
         return payment;
     }
 }

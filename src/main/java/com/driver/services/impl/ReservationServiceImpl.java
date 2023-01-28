@@ -29,6 +29,8 @@ public class ReservationServiceImpl implements ReservationService {
             throw new Exception("Cannot make reservation");
         }
         List<Spot> spotList = parkingLot.getSpotList();
+
+
         int price = Integer.MAX_VALUE;
         SpotType spotType = null;
         Spot spotBooked = null;
