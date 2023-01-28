@@ -40,7 +40,7 @@ public class PaymentServiceImpl implements PaymentService {
             payment.setPaymentMode(PaymentMode.UPI);
         }
         else{
-            payment.setPaymentCompleted(false);
+           // payment.setPaymentCompleted(false);
             throw new Exception("Payment mode not detected");
         }
 
