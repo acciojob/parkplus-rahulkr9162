@@ -29,17 +29,17 @@ public class PaymentServiceImpl implements PaymentService {
         }
 
 
-        if(mode == "CASH"){
+        if(mode.equals("CASH")){
             payment.setPaymentMode(PaymentMode.CASH);
         }
-        else if(mode == "CARD"){
+        else if(mode.equals("CARD")){
             payment.setPaymentMode(PaymentMode.CARD);
         }
-        else if(mode == "UPI"){
+        else if(mode.equals("UPI")){
             payment.setPaymentMode(PaymentMode.UPI);
         }
         else{
-           // payment.setPaymentCompleted(false);
+            payment.setPaymentCompleted(false);
             throw new Exception("Payment mode not detected");
         }
 
