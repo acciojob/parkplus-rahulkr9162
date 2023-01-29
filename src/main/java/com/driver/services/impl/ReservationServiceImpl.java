@@ -70,7 +70,6 @@ public class ReservationServiceImpl implements ReservationService {
             }
 
             Reservation reservation = new Reservation();
-            if (flag == true) {
                 reservation.setNumberOfHours(timeInHours);
                 reservation.setSpot(spotBooked);
                 reservation.setUser(user);
@@ -79,9 +78,9 @@ public class ReservationServiceImpl implements ReservationService {
                 spotBooked.setOccupied(true);
                 List<Reservation> reservationList = spotBooked.getReservationList();
                 reservationList.add(reservation);
-                spotBooked.setReservationList(reservationList);
+                user.getReservationList().add(reservation);
+                userRepository3.save(user);
                 spotRepository3.save(spotBooked);
-            }
             return reservation;
         } catch (Exception e) {
             return null;
