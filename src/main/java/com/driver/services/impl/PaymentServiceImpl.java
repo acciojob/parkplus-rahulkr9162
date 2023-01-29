@@ -21,7 +21,8 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment pay(Integer reservationId, int amountSent, String mode) throws Exception {
         Reservation reservation = reservationRepository2.findById(reservationId).get();
         Spot spot = reservation.getSpot();
-        Payment payment =reservation.getPayment();
+       // Payment payment =reservation.getPayment();
+        Payment payment= new Payment();
         mode = mode.toUpperCase();
 
         if(spot.getPricePerHour()*reservation.getNumberOfHours() > amountSent){
