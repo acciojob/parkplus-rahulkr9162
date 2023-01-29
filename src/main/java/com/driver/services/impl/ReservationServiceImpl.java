@@ -31,7 +31,16 @@ public class ReservationServiceImpl implements ReservationService {
                 throw new Exception("Cannot make reservation");
             }
             List<Spot> spotList = parkingLot.getSpotList();
-
+            boolean spotAvailiability = false;
+            for(Spot spot : spotList){
+                if(!spot.getOccupied()){
+                    spotAvailiability = true;
+                    break;
+                }
+            }
+            if(spotAvailiability == false){
+                throw new Exception("Cannot make reservation");
+            }
 
             int price = Integer.MAX_VALUE;
             SpotType spotType = null;
@@ -54,6 +63,10 @@ public class ReservationServiceImpl implements ReservationService {
                         flag = true;
                     }
                 }
+            }
+
+            if(flag == false){
+                throw new Exception("Cannot make reservation");
             }
 
             Reservation reservation = new Reservation();
